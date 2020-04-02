@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+
+
+  <%= link_to 'Scrape', api_v1_companies_data_path %>
+  <%= link_to 'Chart', api_v1_companies_chart_path %>
+  <%if @companies%>
+  <h1>Companies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company_name</th>
+      <th>Company_code</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= link_to company.c_name, api_v1_companies_details_path(:id=>company.id)%></td>
+        <td><%= company.c_code %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%end%>
+
+
+

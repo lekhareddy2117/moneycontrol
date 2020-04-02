@@ -1,0 +1,28 @@
+
+<%= form_tag(api_v1_companies_details_path, method: :get) do %>
+    
+    <div class="field">
+    <%= label_tag(:sort, "Sort By:") %>
+    <%= radio_button_tag('sort', 'date') %>
+   
+    <%= label_tag(:sort, "Open:") %>
+    <%= radio_button_tag('sort', 'open') %>
+   
+    <%= label_tag(:sort, "Close:") %>
+    <%= radio_button_tag('sort', 'close') %>
+     
+    <%= label_tag(:sort, "High:") %>
+    <%= radio_button_tag('sort', 'high') %>
+   
+    <%= label_tag(:sort, "Low:") %>
+    <%= radio_button_tag('sort', 'low') %>
+   
+    <%= label_tag(:sort, "Value:") %>
+    <%= radio_button_tag('sort', 'value') %>
+    <div>
+   
+     <%= hidden_field_tag "id", @id %>
+     <%= submit_tag("Search") %>
+   
+   <% end %>
+   

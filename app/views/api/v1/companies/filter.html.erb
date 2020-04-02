@@ -1,0 +1,16 @@
+
+<%= form_tag(api_v1_companies_details_path, method: :get) do %>
+    <%= label_tag(:date, "Date:") %>
+   <%= date_field_tag(:date)%>
+  
+   <%= label_tag(:startdate, "Start Date:") %>
+   <%= date_field_tag(:startdate)%>
+  
+   <%= label_tag(:enddate, "End Date:") %>
+   <%= date_field_tag(:enddate)%>
+  
+    <%= hidden_field_tag "id", @id %>
+    <%= submit_tag("Search") %>
+  
+  <% end %>
+  

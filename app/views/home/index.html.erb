@@ -1,0 +1,15 @@
+<div class="home">
+<% if user_signed_in? %>
+<div class="after signin">
+<h1>hello</h1>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+  </li>
+  </div>
+  <% else %>
+  <li>
+  <%= link_to('SignUp', new_user_registration_path) %> 
+  <%= link_to('Signin', new_user_session_path) %>  
+  </li>
+<% end %>
+</div>
