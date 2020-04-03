@@ -1,6 +1,7 @@
 require 'httparty'
 require 'nokogiri'
 require 'json'
+require 'securerandom'
 class Api::V1::CompaniesController < ApplicationController
     
   
@@ -20,6 +21,10 @@ class Api::V1::CompaniesController < ApplicationController
         company = Company.where(:c_code=>code)
         @stocks = company[0].stocks
         render json: @stocks.as_json(only: [:date, :open, :close, :high, :low, :volume, :value])
+    end
+     
+    def generateapikey
+      x=p SecureRandom.urlsafe_base64
     end
 
     

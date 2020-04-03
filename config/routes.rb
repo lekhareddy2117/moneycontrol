@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get 'companies/data/', to: 'companies#save_data'
       get 'companies/chart/', to: 'companies#chart'
       get 'companies/details/', to: 'companies#companydetails'
+      get 'generateapikey', to: 'companies#generateapikey'
       resources :companies do
        
       resources :stocks

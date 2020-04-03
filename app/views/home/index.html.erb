@@ -1,9 +1,23 @@
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-162706611-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-162706611-1');
+</script>
+
+
+
+
 <div class="home">
 <% if user_signed_in? %>
 <div class="after signin">
 <h1>hello</h1>
   <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>  
+  <%= link_to 'Generate API key',  api_v1_generateapikey_path %>        
   </li>
   </div>
   <% else %>
