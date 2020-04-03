@@ -16,7 +16,10 @@ class Api::V1::CompaniesController < ApplicationController
     end
 
     def show
-        @company = Company.find(params[:id])
+      code=params[:id]
+        company = Company.where(:c_code=>code)
+        @stocks = company[0].stocks
+        render json: @stocks.as_json(only: [:date, :open, :close, :high, :low, :volume, :value])
     end
 
     
