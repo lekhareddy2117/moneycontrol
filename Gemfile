@@ -27,10 +27,10 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'httparty'
 gem 'nokogiri'
-
+gem 'rack-throttle', '~> 0.7.0'
 gem 'devise'
 gem 'pry'
-
+gem 'redis', '~> 4.1', '>= 4.1.3'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

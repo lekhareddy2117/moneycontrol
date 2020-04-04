@@ -6,6 +6,7 @@ class Api::V1::CompaniesController < ApplicationController
     
   
     def index
+      
         @companies=Company.all
         render json: @companies.as_json(only: [:c_code, :c_name])
         # ,include: {:stocks => { :only => [:date, :open, :close, :high, :low, :volume, :value ] }})
