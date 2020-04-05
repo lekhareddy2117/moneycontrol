@@ -6,10 +6,21 @@ class Api::V1::CompaniesController < ApplicationController
     
   
     def index
-      
-        @companies=Company.all
-        render json: @companies.as_json(only: [:c_code, :c_name])
-        # ,include: {:stocks => { :only => [:date, :open, :close, :high, :low, :volume, :value ] }})
+      apikey=params[:apikey]
+      code=params[:id]
+      if apikey!=nil && current_user.userapis.where(:apikey=>apikey).count>0
+        if code==nil
+          @companies=Company.all
+          render json: @companies.as_json(only: [:c_code, :c_name])
+          # ,include: {:stocks => { :only => [:date, :open, :close, :high, :low, :volume, :value ] }})
+        else
+          company = Company.where(:c_code=>code)
+          @stocks = company[0].stocks
+          render json: @stocks.as_json(only: [:date, :open, :close, :high, :low, :volume, :value])
+        end
+      else
+        render :json => { :errors => "Invalid API-KEY" }
+      end
     end
 
     def as_json(options={})
@@ -18,14 +29,17 @@ class Api::V1::CompaniesController < ApplicationController
     end
 
     def show
-      code=params[:id]
-        company = Company.where(:c_code=>code)
-        @stocks = company[0].stocks
-        render json: @stocks.as_json(only: [:date, :open, :close, :high, :low, :volume, :value])
     end
      
     def generateapikey
+     if current_user.userapis.count<5
       x=p SecureRandom.urlsafe_base64
+      current_user.userapis.create(:apikey=>x)
+      flash[:notice]="generated Successfully" 
+     else
+      flash[:notice]="Exceeded Your limit "
+     end  
+     redirect_to home_index_path   
     end
 
     

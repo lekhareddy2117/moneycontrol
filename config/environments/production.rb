@@ -88,8 +88,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  rules = [{ method: "GET", path: "/api/v1/companies", limit: 3 } ]
-    config.middleware.use Rack::Throttle::Rules, rules: rules, time_window: :minute,:cache => Redis.new, :key_prefix => :throttle
+  # rules = [{ method: "GET", path: "/api/v1/companies", limit: 3 } ]
+  #   config.middleware.use Rack::Throttle::Rules, rules: rules, time_window: :minute,:cache => Redis.new, :key_prefix => :throttle
 
   # Inserts middleware to perform automatic connection switching.
   # The `database_selector` hash is used to pass options to the DatabaseSelector
