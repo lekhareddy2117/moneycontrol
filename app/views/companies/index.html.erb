@@ -1,12 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Companies</h1>
+
+
+  <%= link_to 'Scrape', api_v1_companies_data_path %>
+  <%= link_to 'Chart', api_v1_companies_chart_path %>
+  <%if @companies%>
+  <h1>Companies</h1>
 
 <table>
   <thead>
     <tr>
-      <th>C code</th>
-      <th>C name</th>
+      <th>Company_name</th>
+      <th>Company_code</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,11 +19,8 @@
   <tbody>
     <% @companies.each do |company| %>
       <tr>
+        <td><%= link_to company.c_name, api_v1_companies_details_path(:id=>company.id)%></td>
         <td><%= company.c_code %></td>
-        <td><%= company.c_name %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,7 @@
 
 <br>
 
-<%= link_to 'New Company', new_company_path %>
+<%end%>
+
+
+

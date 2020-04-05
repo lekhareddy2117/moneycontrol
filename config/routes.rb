@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
   resources :companies
   
-  
+  get 'companies/details/', to: 'companies#companydetails'
   default_url_options :host => "localhost"
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

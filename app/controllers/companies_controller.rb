@@ -21,6 +21,28 @@ class CompaniesController < ApplicationController
   def edit
   end
 
+  def companydetails
+    @id=params[:id]
+    @date=params[:date]
+    @startdate=params[:startdate]
+    @enddate=params[:enddate]
+    if params[:sort]==nil
+      @sort=@date
+    else
+      @sort=params[:sort]
+    end
+    company=Company.find(@id)
+    if(@date==nil && @startdate==nil && @enddate==nil)
+      @c_details=company.stocks.order(@sort)
+    else
+      if(@date!="")
+      @c_details=company.stocks.where(:date=>@date).order(@sort)
+      else
+      @c_details=company.stocks.where('date >= ? AND date <= ?', @id,@startdate, @enddate).order(:@sort)
+      end
+    end  
+  end
+
   # POST /companies
   # POST /companies.json
   def create

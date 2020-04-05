@@ -1,0 +1,40 @@
+<div>
+<%= render :template => 'api/v1/companies/filter' %>
+<%= render :template => 'api/v1/companies/sort' %>
+</div>
+
+<% if (@c_details) %>
+<table>
+<thead>
+  <tr>
+    <th>Date</th>
+    <th>Open</th>
+    <th>Close</th>
+    <th>High</th>
+    <th>Low</th>
+    <th>Volume</th>
+    <th>Value</th>
+    
+  </tr>
+</thead>
+
+<tbody>
+  <% @c_details.each do |company|%>
+    <tr>
+      <td> <%= company.date %> </td>
+      <td> <%= company.open %> </td>
+      <td> <%= company.close %> </td>
+      <td> <%= company.high %> </td>
+      <td> <%= company.low %> </td>
+      <td> <%= company.volume %> </td>
+      <td> <%= company.value %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+  <%else%>
+  <% No data %>
+  <%end %>
+
+
+  
