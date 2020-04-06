@@ -1,3 +1,35 @@
 // Place all the styles related to the companies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+table{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: white;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    // border-collapse: collapse;
+    width: 35%;
+    border: 2px solid black;
+    thead{
+        background-color: red;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        border: 2px solid black;
+        color: white;
+    }
+    tr{
+        border: 2px solid black;
+    }
+    a{
+        color: black;
+    }
+  
+    
+}
+.companies{
+    
+}

@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 
-
+<div class="button">
   <%= link_to 'Scrape', api_v1_companies_data_path %>
   <%= link_to 'Chart', api_v1_companies_chart_path %>
+  </div>
   <%if @companies%>
-  <h1>Companies</h1>
-
+  <h1 align="center">Companies</h1>
+<div class="companies">
 <table>
   <thead>
     <tr>
@@ -27,7 +28,7 @@
 </table>
 
 <br>
-
+</div>
 <%end%>
 
 

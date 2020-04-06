@@ -8,15 +8,19 @@ class Api::V1::CompaniesController < ApplicationController
     def index
       apikey=params[:apikey]
       code=params[:id]
-      if apikey!=nil && current_user.userapis.where(:apikey=>apikey).count>0
+      if apikey!=nil && Userapi.where(:apikey=>apikey).count>0
         if code==nil
           @companies=Company.all
           render json: @companies.as_json(only: [:c_code, :c_name])
           # ,include: {:stocks => { :only => [:date, :open, :close, :high, :low, :volume, :value ] }})
         else
           company = Company.where(:c_code=>code)
-          @stocks = company[0].stocks
-          render json: @stocks.as_json(only: [:date, :open, :close, :high, :low, :volume, :value])
+          if company.exists?
+            @stocks = company[0].stocks
+            render json: @stocks.as_json(only: [:date, :open, :close, :high, :low, :volume, :value])
+          else
+            render :json => { :errors => "Invalid id" }
+          end
         end
       else
         render :json => { :errors => "Invalid API-KEY" }
@@ -32,7 +36,8 @@ class Api::V1::CompaniesController < ApplicationController
     end
      
     def generateapikey
-     if current_user.userapis.count<5
+      
+     if current_user.userapis.count==0
       x=p SecureRandom.urlsafe_base64
       current_user.userapis.create(:apikey=>x)
       flash[:notice]="generated Successfully" 
@@ -121,7 +126,7 @@ end
       if(@date!="")
       @c_details=company.stocks.where(:date=>@date).order(@sort)
       else
-      @c_details=company.stocks.where('date >= ? AND date <= ?', @id,@startdate, @enddate).order(:@sort)
+      @c_details=company.stocks.where('date >= ? AND date <= ?',@startdate, @enddate).order(@sort)
       end
     end  
   end

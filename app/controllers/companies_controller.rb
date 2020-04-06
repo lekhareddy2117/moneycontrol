@@ -38,7 +38,7 @@ class CompaniesController < ApplicationController
       if(@date!="")
       @c_details=company.stocks.where(:date=>@date).order(@sort)
       else
-      @c_details=company.stocks.where('date >= ? AND date <= ?', @id,@startdate, @enddate).order(:@sort)
+      @c_details=company.stocks.where('date >= ? AND date <= ?',@startdate, @enddate).order(@sort)
       end
     end  
   end
